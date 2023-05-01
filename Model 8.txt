@@ -1,0 +1,53 @@
+To implement K means Clustering in R.
+
+ibrary(arules)
+library(arulesViz)
+inspect (Groceries)
+
+
+grules<-apriori(Groceries) 
+
+
+grules <-apriori(Groceries, parameter=list( supp = 0.001 , conf = 0.8 )) 
+
+
+inspect(grules[1:5]) 
+
+
+grules <- sort (grules, by = ” support ”,decreasing = T) inspect(grules[1:10]) 
+
+
+redundant_grules <- is.redundant(grules) 
+
+
+summary(redundant_grules) 
+
+grules<-grules[!redundant_grules]
+
+inspect(grules)
+
+
+grules_whole_milk <- apriori(Groceries, parameter=list(supp = 0.0001,conf = 0.08), appearance=list(default="rhs”, lhs = "whole milk")) 
+
+
+
+inspect(grules_whole_milk[1:7]) 
+
+
+plot(grules_whole_milk, method = "graph" ,engine ="interactive") 
+
+
+
+Aim: To implement K means Clustering in R.
+
+Program: 
+library(ClusterR) library(cluster) 
+# Removing previous label of Species from the original Iris dataset iris_new <- iris[, -5] 
+# Initializing seed value set.seed(200) 
+kmeans.re <- kmeans(iris_new, centers = 3, nstart = 10) kmeans.re 
+kmeans.re$cluster 
+# Building confusion matrix table 
+confusion_matrix <- table(iris$Species, kmeans.re$cluster) confusion_matrix 
+#Plotting the clusters 
+plot(iris_new[c("Sepal.Length", "Sepal.Width")],col = kmeans.re$cluster,main = "Showing 3 different Clusters") 
+Output:

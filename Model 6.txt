@@ -1,0 +1,56 @@
+•	Importing the Dataset
+Code 
+Step 1 :- Setting the Default Folder 
+            Click on Session – Set Working Directory-Choose Directory
+Step 2 :- 
+Type below code in the console window
+Out Put :
+dataset = read.csv(‘dataset.csv’)
+head(dataset)
+
+ 
+
+
+
+Display all 70 rows from CSV file 
+Out Put 
+>head(dataset, 10)
+ 
+
+
+
+
+
+
+
+•	Dealing with Missing Values
+Code
+dataset$Age = ifelse(is.na(dataset$Age),ave(dataset$Age, FUN =function(x) mean(x, na.rm = 'TRUE')),dataset$Age)
+
+dataset$Salary = ifelse(is.na(dataset$Salary),ave(dataset$Salary, FUN =function(x) mean(x, na.rm = 'TRUE')),dataset$Salary)
+
+head(dataset,10)
+
+Out Put 
+ 
+
+Round up AGE 
+Code 
+dataset$Age = as.numeric(format(round(dataset$Age,0))
+head(dataset,10)
+
+Out Put 
+
+
+
+
+
+
+•	Dealing with Categorical data
+Code 
+dataset$Purchsed = factor(dataset$Purchsed, levels = c('NO','Yes'), labels = c(0,1))
+
+> head(dataset,10)
+
+OUT PUT 
+ 

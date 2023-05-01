@@ -1,0 +1,43 @@
+Aim: To implement and analyse linear regression
+
+ 
+
+
+
+
+Code:
+library("xlsx")
+ageheight <- read.xlsx("C:\\Users\\Hashim Sayyed\\Desktop\\ageandheight.xls", sheetName = "linear regression")
+result <- lm(heights~ages, data = ageheight) #create the linear regression
+summary(result)
+
+Output:
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Aim: To implement and analyse multiple linear regression
+
+ 
+
+
+Code:
+library("xlsx")
+ageheight <- read.xlsx("C:\\Users\\Hashim Sayyed\\Desktop\\ageandheight.xls", sheetName = "multiple regression")
+
+result <- lm(heights~ages+no_of_brothers, data = ageheight) #create the linear regression
+summary(result)
+
+Output:
+
+ 
+

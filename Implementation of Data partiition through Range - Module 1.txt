@@ -1,0 +1,65 @@
+Aim :- : Implementation of Data partitioning through Range
+
+
+// Create A Database 
+create database MCA;
+
+use MCA;
+
+// Creating table in the database
+
+CREATE TABLE tr (id INT, name VARCHAR (50), purchased DATE)
+PARTITION BY RANGE (YEAR (purchased)) (
+PARTITION p0 VALUES LESS THAN (1990),
+PARTITION p1 VALUES LESS THAN (1995),
+PARTITION p2 VALUES LESS THAN (2000),
+PARTITION p3 VALUES LESS THAN (2005),
+PARTITION p4 VALUES LESS THAN (2010),
+PARTITION p5 VALUES LESS THAN (2015)
+);
+
+// Inserting Datat into tables 
+
+INSERT INTO tr VALUES
+(1, 'desk organiser', '2003-10-15'),
+(2, 'alarm clock', '1997-11-05'),
+(3, 'chair', '2009-03-10'),
+(4, 'bookcase', '1989-01-10'),
+(5, 'exercise bike', '2014-05-09'),
+(6, 'sofa', '1987-06-05'),
+(7, 'espresso maker', '2011-11-22'),
+(8, 'aquarium', '1992-08-04'),
+(9, 'study desk', '2006-09-16'),
+(10, 'lava lamp', '1998-12-25');
+
+select * from tr;
+
+//: We can also check the inserted data into table tr with partition with range created with following code
+
+SELECT * FROM tr PARTITION (p2);
+SELECT * FROM tr PARTITION (p5);
+SELECT * FROM tr PARTITION (p4);
+
+// Data Output Partiotion Name & Tables Rows 
+
+SELECT PARTITION_NAME, TABLE_ROWS FROM
+INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_NAME='tr';
+
+// Drop a MySQL partition
+
+SELECT PARTITION_NAME, TABLE_ROWS FROM
+INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_NAME='tr';
+
+
+AIM :-  Implementation of Data partitioning through List partition.
+
+
+CREATE TABLE Stores ( cust_name VARCHAR(40),
+bill_no VARCHAR(20) NOT NULL, store_id INT PRIMARY KEY NOT NULL,
+bill_date DATE NOT NULL, amount DECIMAL(8,2) NOT NULL
+)
+PARTITION BY LIST(store_id) (
+PARTITION pEast VALUES IN (101, 103, 105),
+PARTITION pWest VALUES IN (102, 104, 106),
+PARTITION pNorth VALUES IN (107, 109, 111),
+PARTITION pSouth VALUES IN (108, 110, 112));
